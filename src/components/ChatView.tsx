@@ -7,6 +7,8 @@ import { toast } from "sonner";
 import { getConversation, sendMessage } from "@/lib/recall.functions";
 import { ActivityPanel, type AgentEvent } from "@/components/ActivityPanel";
 import { useSession } from "@/components/AppShell";
+import Markdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import { cn } from "@/lib/utils";
 
 const STARTERS = [
@@ -197,13 +199,19 @@ function Bubble({ message }: { message: ChatMessage }) {
     <div className={cn("animate-rise flex", isUser ? "justify-end" : "justify-start")}>
       <div
         className={cn(
-          "max-w-[85%] rounded-2xl px-4 py-3 text-[14.5px] leading-relaxed whitespace-pre-wrap",
+          "max-w-[85%] rounded-2xl px-4 py-3 text-[14.5px] leading-relaxed",
           isUser
-            ? "bg-primary text-primary-foreground"
+            ? "bg-primary whitespace-pre-wrap text-primary-foreground"
             : "border border-border bg-card text-card-foreground",
         )}
       >
-        {message.content}
+        {isUser ? (
+          message.content
+        ) : (
+          <div className="prose-recall">
+            <Markdown remarkPlugins={[remarkGfm]}>{message.content}</Markdown>
+          </div>
+        )}
         {!isUser && message.used_memory_ids?.length ? (
           <p className="mt-2.5 flex items-center gap-1.5 border-t border-border pt-2 text-[11px] text-muted-foreground">
             <Brain className="size-3" />

@@ -176,3 +176,62 @@
 @utility typing-dot {
   animation: pulse-dot 1.1s ease-in-out infinite;
 }
+
+@utility prose-recall {
+  & > *:first-child {
+    margin-top: 0;
+  }
+  & > *:last-child {
+    margin-bottom: 0;
+  }
+  & p {
+    margin: 0.6em 0;
+  }
+  & ul,
+  & ol {
+    margin: 0.6em 0;
+    padding-left: 1.15em;
+  }
+  & ul {
+    list-style: disc;
+  }
+  & ol {
+    list-style: decimal;
+  }
+  & li {
+    margin: 0.25em 0;
+  }
+  & h1,
+  & h2,
+  & h3 {
+    margin: 1em 0 0.4em;
+    font-size: 1em;
+    font-weight: 600;
+  }
+  & strong {
+    font-weight: 600;
+    color: var(--color-foreground);
+  }
+  & code {
+    font-family: var(--font-mono);
+    font-size: 0.86em;
+    background: var(--color-muted);
+    padding: 0.1em 0.35em;
+    border-radius: 0.4em;
+  }
+  & pre {
+    background: var(--color-muted);
+    padding: 0.85em;
+    border-radius: 0.75em;
+    overflow-x: auto;
+    margin: 0.7em 0;
+  }
+  & a {
+    color: var(--color-primary);
+    text-decoration: underline;
+  }
+  & hr {
+    margin: 0.9em 0;
+    border-color: var(--color-border);
+  }
+}

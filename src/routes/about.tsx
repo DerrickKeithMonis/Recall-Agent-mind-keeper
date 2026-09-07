@@ -1,5 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { Link } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, CircleCheck } from "lucide-react";
 import { AppShell } from "@/components/AppShell";
 import { ArchitectureDiagram } from "@/components/ArchitectureDiagram";
@@ -53,8 +52,6 @@ const TECH = [
   ["Auth", "Email/password and Google sign-in; isolated HTTP-only cookie sessions for guests"],
   ["Observability", "Structured agent_events rows — observable actions only, never model reasoning"],
 ];
-
-export const Route_ = null;
 
 function About() {
   return (

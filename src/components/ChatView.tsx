@@ -67,7 +67,7 @@ export function ChatView({ conversationId }: { conversationId: string | null }) 
   }, [conversationId, send.isPending]);
 
   const messages: ChatMessage[] = [
-    ...(((convo.data?.messages ?? []) as ChatMessage[]) ?? []),
+    ...((convo.data?.messages ?? []) as ChatMessage[]),
     ...optimistic,
   ];
   const events = (convo.data?.events ?? []) as AgentEvent[];

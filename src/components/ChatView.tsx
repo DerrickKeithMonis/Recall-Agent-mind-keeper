@@ -44,6 +44,7 @@ export function ChatView({ conversationId }: { conversationId: string | null }) 
     queryKey: ["conversation", conversationId],
     queryFn: () => getFn({ data: { id: conversationId! } }),
     enabled: !!conversationId,
+    retry: false,
   });
 
   const send = useMutation({
@@ -67,6 +68,13 @@ export function ChatView({ conversationId }: { conversationId: string | null }) 
   useEffect(() => {
     if (window.innerWidth >= 768) setPanelOpen(true);
   }, []);
+
+  useEffect(() => {
+    if (conversationId && convo.isSuccess && !convo.data?.conversation) {
+      toast.error("That conversation is no longer available.");
+      navigate({ to: "/" });
+    }
+  }, [conversationId, convo.isSuccess, convo.data, navigate]);
 
   useEffect(() => {
     textareaRef.current?.focus();

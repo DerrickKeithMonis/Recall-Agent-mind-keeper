@@ -73,7 +73,7 @@ export const getConversation = createServerFn({ method: "POST" })
       db.from("conversations").select("id, title").eq("id", data.id),
       id,
     ).maybeSingle();
-    if (!convo) throw new Error("Conversation not found.");
+    if (!convo) return { conversation: null, messages: [], events: [] };
     const { data: messages } = await db
       .from("messages")
       .select("id, role, content, used_memory_ids, created_at")

@@ -1,24 +1,30 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { AppShell } from "@/components/AppShell";
+import { ChatView } from "@/components/ChatView";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
-  component: Index,
+  head: () => ({
+    meta: [
+      { title: "Recall — An AI agent that remembers what matters" },
+      {
+        name: "description",
+        content:
+          "Recall is an AI agent with controlled persistent memory: it saves useful context, retrieves only what's relevant, and gives you full control over what it knows.",
+      },
+      { property: "og:title", content: "Recall — An AI agent that remembers what matters" },
+      {
+        property: "og:description",
+        content: "AI conversations shouldn't start from zero. Try the memory agent demo.",
+      },
+    ],
+  }),
+  component: Home,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
+function Home() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <AppShell>
+      <ChatView conversationId={null} />
+    </AppShell>
   );
 }

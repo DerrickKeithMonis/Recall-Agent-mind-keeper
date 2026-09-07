@@ -29,7 +29,7 @@ type ChatMessage = {
 
 export function ChatView({ conversationId }: { conversationId: string | null }) {
   const [input, setInput] = useState("");
-  const [panelOpen, setPanelOpen] = useState(true);
+  const [panelOpen, setPanelOpen] = useState(false);
   const [optimistic, setOptimistic] = useState<ChatMessage[]>([]);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
@@ -63,6 +63,10 @@ export function ChatView({ conversationId }: { conversationId: string | null }) 
       toast.error(err.message || "The agent could not complete that request.");
     },
   });
+
+  useEffect(() => {
+    if (window.innerWidth >= 768) setPanelOpen(true);
+  }, []);
 
   useEffect(() => {
     textareaRef.current?.focus();

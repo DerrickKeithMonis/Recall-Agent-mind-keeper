@@ -32,8 +32,10 @@ export function ActivityPanel({
   return (
     <aside
       className={cn(
-        "flex shrink-0 flex-col border-l border-border bg-surface/60 transition-all duration-300",
-        open ? "w-full md:w-[330px]" : "w-[52px]",
+        "flex shrink-0 flex-col border-l border-border bg-background transition-all duration-300 md:bg-surface/60",
+        open
+          ? "fixed inset-y-0 right-0 z-30 w-[85%] max-w-[330px] md:static md:w-[330px]"
+          : "w-[52px]",
       )}
     >
       <div className="flex items-center gap-2 border-b border-border px-3 py-3.5">
